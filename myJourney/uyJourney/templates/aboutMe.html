@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About HTML</title>
+  <link rel="stylesheet" href="{% static 'uyJourney/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>About HTML</h1>
+    <p>Learn the structure and basics of the web</p>
+  </header>
+
+  <nav>
+    <a href="{% url 'index' %}">🏠 Home</a>
+    <a href="{% url 'about_html' %}">🔶 About HTML</a>
+  </nav>
+
+  <div class="container">
+    {% for topic in topics %}
+      <div class="topic">
+        <h2>{{ topic.title }}</h2>
+        <p>{{ topic.description }}</p>
+
+        {% if topic.example_code %}
+          <h4>Example:</h4>
+          <pre>{{ topic.example_code }}</pre>
+        {% endif %}
+
+        <small><em>Added on: {{ topic.date_added }}</em></small>
+      </div>
+    {% empty %}
+      <p>No HTML topics yet. Please add some from the admin panel.</p>
+    {% endfor %}
+  </div>
+
+  <footer>
+    © 2025 My Learning Journey | About HTML Section
+  </footer>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Learning Journey</title>
+  <style>
+    /* ===== General Styles ===== */
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #007bff, #00bcd4);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    nav {
+      background: #007bff;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .entry {
+      border-left: 4px solid #00bcd4;
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
+
+    .entry h2 {
+      color: #007bff;
+      margin-bottom: 0.3rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background: #007bff;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    /* ===== Admin Screenshot ===== */
+    .screenshot {
+      max-width: 100%;       /* Responsive width */
+      height: auto;          /* Maintain aspect ratio */
+      display: block;
+      margin: 1rem auto;     /* Center horizontally */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Learning Journey</h1>
+    <p>Exploring HTML, CSS, and Django</p>
+  </header>
+
+  <nav>
+    <a href="{% url 'index' %}">🏠 Home</a>
+    <a href="{% url 'about_html' %}">🔶 About HTML</a>
+  </nav>
+
+  <div class="container">
+    {% for entry in journeys %}
+      <div class="entry">
+        <h2>{{ entry.title }}</h2>
+        <p>{{ entry.description }}</p>
+        <small><em>Added on: {{ entry.date_added }}</em></small>
+      </div>
+    {% empty %}
+      <p>No learning entries yet. Please add some from the admin panel.</p>
+    {% endfor %}
+  </div>
+
+  <div class="container">
+    <h2>Screenshots from Admin Panel</h2>
+    <img src="{% static 'images/admin.png' %}" alt="Admin Panel Screenshot" class="screenshot">
+  </div>
+
+  <footer>
+    © 2025 My Learning Journey | Created with ❤️ by Ugyen Yangzom
+  </footer>
+</body>
+</html>
